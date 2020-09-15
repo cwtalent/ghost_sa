@@ -224,7 +224,7 @@ def read_mobile_ad_list(page,length,filters='',sort='created_at',way='desc'):
 
 
 def count_mobile_ad_list(filters=''):
-    sql = """SELECT count(*) FROM `mobile_ad_list` {filters} """.format(filters=filters)
+    sql = """SELECT count(*) FROM `mobile_ad_list` left join `mobile_ad_src` on `mobile_ad_list`.src=`mobile_ad_src`.src {filters} """.format(filters=filters)
     result,count = do_tidb_select(sql)
     if count == 0:
         # print(result,sql)
